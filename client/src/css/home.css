@@ -1,0 +1,37 @@
+.blur-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+}
+
+.blur {
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(13.4px);
+    -webkit-backdrop-filter: blur(13.4px);
+    opacity: 1;
+    visibility: visible;
+}
+
+.loaded {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 500ms ease-in;
+}
+
+.landing-img-container {
+    position: relative;
+}
+
+.landing-img {
+    object-fit: cover;
+}
+
+
+.landing-img-container h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
