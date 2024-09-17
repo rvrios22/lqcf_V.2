@@ -45,7 +45,7 @@ function PageHeader({ srcImg, fetchImg, headerText, imgAltText }) {
             handleImgResize();
           }}
         />
-        <h1>{headerText}</h1>
+        <h1 className={loading ? "hidden" : "slide-in"}>{headerText}</h1>
       </div>
     </>
   );
