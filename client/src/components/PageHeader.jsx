@@ -11,12 +11,13 @@ function PageHeader({ srcImg, fetchImg, headerText, imgAltText }) {
     const response = await fetch(`http://localhost:3001/home/${fetchImg}.avif`);
     const data = await response.blob();
     setImgSrc(URL.createObjectURL(data));
+    console.log(imgSrc);
     setLoading(false);
     setImgFetched(true);
     return () => URL.revokeObjectURL(imgSrc);
   };
 
-  const handleImgResize = (e) => {
+  const handleImgResize = () => {
     setImgSize({
       height: window.innerHeight,
       width: window.innerWidth,

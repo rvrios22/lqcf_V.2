@@ -1,6 +1,7 @@
 import React from "react";
 import PageHeader from "../components/PageHeader";
-// import WhatsGoingOn from "../components/WhatsGoingOn";
+import WhatsGoingOn from '../components/whatsGoingOn/WhatsGoingOn'
+
 function Home() {
   return (
     <>
@@ -23,9 +24,10 @@ function Home() {
         be holy and blameless before Him. In love He predestined us to adoption
         as sons through Jesus Christ to Himself, according to the kind intention
         of His will, to the praise of the glory of His grace, which He freely
-        bestowed on us in the Beloved. <span className="citation">Ephesians 1:3-6</span>
+        bestowed on us in the Beloved.{" "}
+        <span className="citation">Ephesians 1:3-6</span>
       </p>
-      {/* <WhatsGoingOn /> */}
+      <WhatsGoingOn />
     </>
   );
 }
