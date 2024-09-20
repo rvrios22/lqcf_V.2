@@ -1,36 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import data from "./whatsGoingOnData";
 import WhatsGoingOnSqare from "./WhatsGoingOnSqare";
+import useElementInView from "../../hooks/useElementInView";
 
 function WhatsGoingOn() {
   const [loading, setLoading] = useState(true);
+  const [targetRef, isInView] = useElementInView({
+    threshold: 0.5,
+  });
 
-  let newData;
+  const fetchSquareImgs = async () => {
+    try {
+      const responses = await Promise.all(
+        data.map((tile) => fetch(tile.fetch))
+      );
+      const imgBlobs = await Promise.all(responses.map((res) => res.blob()));
+      const imgURLs = imgBlobs.map((blob) => {
+        return URL.createObjectURL(blob);
+      });
+      data.forEach((tile, idx) => {
+        tile.blob = imgURLs[idx];
+      });
+
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
-    const fetchSquareImgs = async () => {
-      try {
-        const responses = await Promise.all(
-          data.map((tile) => fetch(tile.fetch))
-        );
-        const imgBlobs = await Promise.all(responses.map((res) => res.blob()));
-        const imgURLs = imgBlobs.map((blob) => {
-          return URL.createObjectURL(blob)
-        })
-        data.forEach((tile, idx) => {
-          tile.blob = imgURLs[idx]
-        })
-
-        setLoading(false)
-        console.log(data)
-      } catch (err) {
-        console.error(err);
-      }
-    };
+    if (!isInView || !loading) return;
     fetchSquareImgs();
-  }, [loading]);
+  }, [isInView]);
 
   return (
-    <div className="whats-going-on-container">
+    <div className="whats-going-on-container" ref={targetRef}>
       {data.map((tile, idx) => (
         <WhatsGoingOnSqare
           key={idx}
@@ -40,6 +44,7 @@ function WhatsGoingOn() {
           link={tile.link}
           blob={tile.blob}
           loading={loading}
+          idx={idx}
         />
       ))}
     </div>

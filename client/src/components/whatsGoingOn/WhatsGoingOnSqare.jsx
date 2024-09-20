@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../css/whatsGoingOn.css";
 import { Link } from "react-router-dom";
 
-function WhatsGoingOnSqare({ src, title, desc, link, blob, loading }) {
+function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
   const [imgHeight, setImgHeight] = useState(0);
   const handleImgResize = () => {
     window.innerWidth > 499
@@ -17,7 +17,7 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading }) {
   return (
     <Link to={link}>
       <div className="tile-container">
-        <div className={loading ? "tile-loading-container blur" : "tile-loading-container loaded"}></div>
+        <div className={loading ? "tile-loading-container blur" : `tile-loading-container loaded tile-${idx}`}></div>
         <img
           className="tile-img"
           src={loading ? `${src}.avif` : blob}
