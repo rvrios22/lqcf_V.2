@@ -6,7 +6,8 @@ import useElementInView from "../../hooks/useElementInView";
 function WhatsGoingOn() {
   const [loading, setLoading] = useState(true);
   const [targetRef, isInView] = useElementInView({
-    threshold: 0.5,
+    rootMargin: "-10px",
+    threshold: 0.75,
   });
 
   const fetchSquareImgs = async () => {
