@@ -1,0 +1,19 @@
+footer {
+    background-color: rgba(54, 187, 227, 0.554);
+    text-align: center;
+    overflow: hidden;
+}
+
+footer img {
+    margin: .5em auto 1em;
+    border-radius: 10px;
+    width: 90%;
+}
+
+@media (min-width: 600px) {
+    footer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding-top: 1em;
+    }
+}

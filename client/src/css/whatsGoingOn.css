@@ -10,11 +10,6 @@
     transition: transform 250ms ease-in;
 }
 
-.tile-img:hover {
-    transform: scale(1);
-    transition: transform 250ms ease-in;
-}
-
 .tile-text {
     width: 100%;
     margin: 0 auto;

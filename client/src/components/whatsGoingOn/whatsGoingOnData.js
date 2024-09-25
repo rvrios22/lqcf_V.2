@@ -16,7 +16,7 @@ const data = [
         blob: null,
     },
     {
-        title: "Live Stream",
+        title: "Past Services",
         desc: "View our past services here and our current live stream.",
         img: './homeLiveStream',
         link: '/videos',

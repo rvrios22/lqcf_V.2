@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 
 function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
   const [imgHeight, setImgHeight] = useState(0);
-  const [style, setStyle] = useState({});
+  const [textStyle, setTextStyle] = useState({});
+  const [imgStyle, setImgStyle] = useState({
+    objectFit: "cover",
+    width: "100%",
+    transform: "scale(1.1)",
+    transition: "transform 250ms ease-in",
+  });
   const tileRef = useRef(null);
   const textRef = useRef(null);
 
@@ -14,19 +20,27 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
       : setImgHeight(window.innerHeight / 4);
   };
 
-  const handleTextUp = () => {
-    setStyle({
+  const handleAnimIn = () => {
+    setTextStyle({
       transform: `translate(-50%)`,
       transition: "transform 250ms ease-out",
     });
+    setImgStyle({
+      transform: "scale(1)",
+      transition: "transform 250ms ease-in",
+    });
   };
 
-  const handleTextDown = () => {
+  const handleAnimOut = () => {
     const heightDifference =
       tileRef.current.clientHeight - textRef.current.clientHeight;
-    setStyle({
+    setTextStyle({
       transform: `translate(-50%, ${heightDifference}px)`,
       transition: "transform 500ms ease-out",
+    });
+    setImgStyle({
+      transform: "scale(1.1)",
+      transition: "transform 250ms ease-in",
     });
   };
 
@@ -36,9 +50,8 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
     const getHeightDifference = () => {
       const heightDifference =
         tileRef.current.clientHeight - textRef.current.clientHeight;
-      setStyle({
+      setTextStyle({
         transform: `translate(-50%, ${heightDifference}px)`,
-        transition: "transform 500ms ease-out",
       });
     };
     getHeightDifference();
@@ -55,7 +68,11 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
   }, []);
   return (
     <Link to={link}>
-      <div className="tile-container">
+      <div
+        className="tile-container"
+        onMouseEnter={handleAnimIn}
+        onMouseLeave={handleAnimOut}
+      >
         <div
           className={
             loading
@@ -66,14 +83,13 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
         <img
           className="tile-img"
           src={loading ? `${src}.avif` : blob}
+          style={imgStyle}
           alt={title}
           loading="lazy"
           height={!imgHeight ? window.innerHeight / 2 : imgHeight}
           onLoad={handleImgResize}
-          onMouseEnter={handleTextUp}
-          onMouseLeave={handleTextDown}
         />
-        <div className="tile-text" ref={tileRef} style={style}>
+        <div className="tile-text" ref={tileRef} style={textStyle}>
           <h3 className="sub-header" ref={textRef}>
             {title}
           </h3>
