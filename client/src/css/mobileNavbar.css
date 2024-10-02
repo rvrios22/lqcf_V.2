@@ -38,20 +38,59 @@
   stroke-dashoffset: -32.42;
 }
 
+menu {
+  padding: 0;
+  margin: .5em 0;
+  background-color: antiquewhite;
+}
+
+menu li {
+  text-align: center;
+  list-style-type: none;
+}
+
 .mobile-menu {
   position: absolute;
   width: 100%;
   margin: 0 auto;
   padding: 1em;
-  text-align: center;
-  list-style-type: none;
   background-color: white;
   transform: translate(0, -400px);
   transition: transform 1s ease;
-  z-index: 5;
 }
 
 .mobile-menu.showing {
   transform: translate(0, 37px);
   transition: transform 500ms ease-out;
+}
+
+.general-text.sub-menu {
+  position: relative;
+}
+
+.sub-menu svg {
+  position: absolute;
+  fill: black;
+  transition: transform 500ms;
+}
+
+svg.open {
+  transform: rotate(180deg);
+  transition: transform 500ms;
+}
+
+.sub-drop-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 500ms ease-out;
+  margin: 0;
+}
+
+.sub-drop-menu>div {
+  overflow: hidden;
+}
+
+.sub-drop-menu.show {
+  grid-template-rows: 1fr;
+  transition: 350ms ease-out;
 }

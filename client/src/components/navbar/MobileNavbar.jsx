@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "../../css/MobileNavbar.css";
 
 function MobileNavbar() {
   const [isMenuShowing, setIsMenuShowing] = useState(false);
+  const [isMinistryOpen, setIsMinistryOpen] = useState(false);
+  const [isWhoOpen, setIsWhoOpen] = useState(false);
+  const ministryRef = useRef(null);
+  const whoRef = useRef(null);
+
   return (
     <>
       <label className="hamburger">
@@ -25,11 +30,65 @@ function MobileNavbar() {
         <li className="general-text">
           <Link to="/">Home</Link>
         </li>
-        <li className="general-text">
-          <Link to="/">Ministry</Link>
+        <li
+          className="general-text sub-menu"
+          onClick={() => setIsMinistryOpen(!isMinistryOpen)}
+        >
+          Ministry{" "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#e8eaed"
+            className={isMinistryOpen ? "open" : ""}
+          >
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+          <menu
+            className={isMinistryOpen ? "sub-drop-menu show" : "sub-drop-menu"}
+          >
+            <div>
+              <li>
+                <Link to="/identity-youth">Identity Youth</Link>
+              </li>
+              <li className="general-text">
+                <Link to="/mens-study">Men's Study</Link>
+              </li>
+              <li className="general-text">
+                <Link to="/womens-study">Women's Study</Link>
+              </li>
+              <li className="general-text">
+                <Link to="/prayer-chain">Prayer Chain</Link>
+              </li>
+            </div>
+          </menu>
         </li>
-        <li className="general-text">
-          <Link to="/">Who We Are</Link>
+        <li
+          className="general-text sub-menu"
+          onClick={() => setIsWhoOpen(!isWhoOpen)}
+        >
+          Who We Are{" "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#e8eaed"
+            className={isWhoOpen ? "open" : ""}
+          >
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+          <menu className={isWhoOpen ? "sub-drop-menu show" : "sub-drop-menu"}>
+            <div>
+              <li className="general-text">
+                <Link to="/elders">Our Elders</Link>
+              </li>
+              <li className="general-text">
+                <Link to="/beliefs">What We Believe</Link>
+              </li>
+            </div>
+          </menu>
         </li>
         <li className="general-text">
           <Link to="/">School</Link>
