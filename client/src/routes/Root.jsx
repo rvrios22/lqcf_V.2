@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
 import MobileNavbar from "../components/navbar/MobileNavbar";
 import Footer from "../components/Footer";
@@ -14,6 +14,8 @@ function Root() {
         : setIsMobileDisplay(true);
     };
 
+    checkMobileDisplay()
+
     window.addEventListener("resize", checkMobileDisplay);
 
     return () => window.removeEventListener("resize", checkMobileDisplay);
@@ -23,6 +25,7 @@ function Root() {
     <>
       <nav>{isMobileDisplay ? <MobileNavbar /> : <Navbar />}</nav>
       <Outlet />
+      <ScrollRestoration />
       <Footer />
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "../../css/MobileNavbar.css";
 
@@ -7,14 +7,21 @@ function MobileNavbar() {
   const [isMenuShowing, setIsMenuShowing] = useState(false);
   const [isMinistryOpen, setIsMinistryOpen] = useState(false);
   const [isWhoOpen, setIsWhoOpen] = useState(false);
-  const ministryRef = useRef(null);
-  const whoRef = useRef(null);
+  const inputRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+    setIsMenuShowing(false);
+    inputRef.current.checked = false;
+  }, [location]);
 
   return (
-    <>
+    <div className="mobile-nav-container">
       <label className="hamburger">
         <input
           type="checkbox"
+          ref={inputRef}
           onClick={() => setIsMenuShowing(!isMenuShowing)}
         />
         <svg viewBox="0 0 32 32">
@@ -91,19 +98,19 @@ function MobileNavbar() {
           </menu>
         </li>
         <li className="general-text">
-          <Link to="/">School</Link>
+          <Link to="/school">School</Link>
         </li>
         <li className="general-text">
-          <Link to="/">Giving</Link>
+          <Link to="/giving">Giving</Link>
         </li>
         <li className="general-text">
-          <Link to="/">Events</Link>
+          <Link to="/events">Events</Link>
         </li>
         <li className="general-text">
-          <Link to="/">Prayer</Link>
+          <Link to="/prayer">Prayer</Link>
         </li>
       </menu>
-    </>
+    </div>
   );
 }
 
