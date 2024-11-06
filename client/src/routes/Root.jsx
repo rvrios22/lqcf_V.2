@@ -14,7 +14,7 @@ function Root() {
         : setIsMobileDisplay(true);
     };
 
-    checkMobileDisplay()
+    checkMobileDisplay();
 
     window.addEventListener("resize", checkMobileDisplay);
 
@@ -22,12 +22,16 @@ function Root() {
   }, []);
 
   return (
-    <>
-      <nav>{isMobileDisplay ? <MobileNavbar /> : <Navbar />}</nav>
-      <Outlet />
-      <ScrollRestoration />
-      <Footer />
-    </>
+    <div className="page-flex">
+      <div>
+        <nav>{isMobileDisplay ? <MobileNavbar /> : <Navbar />}</nav>
+        <Outlet />
+        <ScrollRestoration />
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 }
 

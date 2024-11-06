@@ -76,8 +76,8 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
         <div
           className={
             loading
-              ? "tile-loading-container blur"
-              : `tile-loading-container loaded tile-${idx}`
+              ? "loading-container blur"
+              : `loading-container loaded tile-${idx}`
           }
         ></div>
         <img

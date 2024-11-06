@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../css/navbar.css";
 import { Link } from "react-router-dom";
 import { whoData, ministryData } from "./navbarData.js";
@@ -17,9 +17,10 @@ function Navbar() {
   };
 
   const handleMouseEnter = (setShow, setMounted, hideTimeoutRef) => {
-    if (!hideTimeoutRef.current) return;
-    clearTimeout(hideTimeoutRef.current);
-    hideTimeoutRef.current = null;
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
     setShow(true);
     setMounted(true);
   };
@@ -27,7 +28,7 @@ function Navbar() {
   const handleMouseLeave = (setMounted, hideTimeoutRef) => {
     hideTimeoutRef.current = setTimeout(() => {
       setMounted(false);
-    }, 50);
+    }, 100);
   };
 
   return (

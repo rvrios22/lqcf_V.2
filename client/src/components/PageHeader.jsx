@@ -8,7 +8,7 @@ function PageHeader({ srcImg, fetchImg, headerText, imgAltText }) {
 
   const fetchHeroImg = async () => {
     if (wasImgFetched) return;
-    const response = await fetch(`http://localhost:3001/home/${fetchImg}.avif`);
+    const response = await fetch(`http://localhost:3001/images/${fetchImg}.avif`);
     const data = await response.blob();
     setImgSrc(URL.createObjectURL(data));
     setLoading(false);
@@ -31,7 +31,7 @@ function PageHeader({ srcImg, fetchImg, headerText, imgAltText }) {
   return (
     <>
       <div
-        className={loading ? "blur-container blur" : "blur-container loaded"}
+        className={loading ? "loading-container blur" : "loading-container loaded"}
       ></div>
       <div className="header-img-container">
         <img

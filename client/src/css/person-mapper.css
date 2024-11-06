@@ -1,0 +1,22 @@
+.person-image-container {
+    position: relative;
+}
+
+.person-image {
+    border-radius: 10px;
+    object-fit: cover;
+    aspect-ratio: 4/5;
+}
+
+@media (min-width: 699px) {
+    .person-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        margin-bottom: 2em;
+    }
+
+    .person-grid > div > h2 {
+        margin: 0;
+    }
+
+}

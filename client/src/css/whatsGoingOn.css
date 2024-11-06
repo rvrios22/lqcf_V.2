@@ -35,13 +35,6 @@
 
 }
 
-.tile-loading-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
 .tile-loading {
     transform: scale(1.25);
 }

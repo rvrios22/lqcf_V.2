@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import data from "./whatsGoingOnData";
+import whatsGoingOnData from "/public/mappingData/whatsGoingOnData.js";
 import WhatsGoingOnSqare from "./WhatsGoingOnSqare";
 import useElementInView from "../../hooks/useElementInView";
 
@@ -13,13 +13,13 @@ function WhatsGoingOn() {
   const fetchSquareImgs = async () => {
     try {
       const responses = await Promise.all(
-        data.map((tile) => fetch(tile.fetch))
+        whatsGoingOnData.map((tile) => fetch(tile.fetch))
       );
       const imgBlobs = await Promise.all(responses.map((res) => res.blob()));
       const imgURLs = imgBlobs.map((blob) => {
         return URL.createObjectURL(blob);
       });
-      data.forEach((tile, idx) => {
+      whatsGoingOnData.forEach((tile, idx) => {
         tile.blob = imgURLs[idx];
       });
 
@@ -36,7 +36,7 @@ function WhatsGoingOn() {
 
   return (
     <div className="whats-going-on-container" ref={targetRef}>
-      {data.map((tile, idx) => (
+      {whatsGoingOnData.map((tile, idx) => (
         <WhatsGoingOnSqare
           key={idx}
           src={tile.img}
