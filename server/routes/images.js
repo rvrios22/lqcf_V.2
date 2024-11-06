@@ -3,17 +3,17 @@ const router = express.Router()
 
 const path = require('path')
 
-router.get('/:header', (req, res, next) => {
-    const fileName = req.params.header
+router.get('/:img', (req, res, next) => {
+    const imgName = req.params.img
     const options = {
         root: path.join(__dirname, '..', 'public','imgs')
     }
 
-    res.sendFile(fileName, options, (err) => {
+    res.sendFile(imgName, options, (err) => {
         if (err) {
             next(err)
         } else {
-            console.log(`Sent: ${fileName}`)
+            console.log(`Sent: ${imgName}`)
         }
     })
 })
