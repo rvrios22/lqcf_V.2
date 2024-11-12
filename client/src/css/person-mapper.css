@@ -19,4 +19,13 @@
         margin: 0;
     }
 
+    .person-grid > div:last-child::-webkit-scrollbar {
+        display: none;
+    } 
+
+    .person-grid:last-child {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
 }

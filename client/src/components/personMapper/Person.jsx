@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../../css/person-mapper.css";
 import useElementInView from "../../hooks/useElementInView";
 
@@ -6,6 +6,8 @@ function Person({ name, bio, img, link }) {
   const [loading, setLoading] = useState(true);
   const [blobURL, setBlobURL] = useState("");
   const [imgWidth, setImgWidth] = useState(0);
+  const [imgHeight, setImgHeight] = useState(0);
+  const imgRef = useRef(null);
   const [targetRef, isInView] = useElementInView();
 
   const fetchImg = async () => {
@@ -21,6 +23,11 @@ function Person({ name, bio, img, link }) {
     setImgWidth(window.innerWidth * 0.9);
   };
 
+  const calcImgHeight = () => {
+    if (!imgRef.current) return;
+    setImgHeight(imgRef.current.clientHeight);
+  };
+
   useEffect(() => {
     if (isInView && !blobURL) {
       fetchImg();
@@ -33,6 +40,13 @@ function Person({ name, bio, img, link }) {
     return () => window.removeEventListener("resize", handleImgResize);
   }, []);
 
+  useEffect(() => {
+    calcImgHeight();
+    window.addEventListener("resize", calcImgHeight);
+
+    return () => window.removeEventListener("resize", calcImgHeight);
+  });
+
   return (
     <div className="person-grid">
       <div className="person-image-container" ref={targetRef}>
@@ -42,14 +56,15 @@ function Person({ name, bio, img, link }) {
           }
         ></div>
         <img
+          ref={imgRef}
           src={loading ? img : blobURL}
           alt={name}
           className="person-image"
           width={window.innerWidth * 0.9}
         />
-      </div>
-      <div>
         <h2 className="sub-header">{name}</h2>
+      </div>
+      <div style={window.innerWidth >= 699 ? { height: imgHeight, overflowY: 'scroll' } : ""}>
         <p className="general-text">{bio}</p>
       </div>
     </div>
