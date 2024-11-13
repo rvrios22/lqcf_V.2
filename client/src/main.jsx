@@ -9,6 +9,7 @@ import Root from "./routes/root";
 import ErrorPage from "./routes/ErrorPage";
 import MensStudy from "./routes/MensStudy";
 import Elders from "./routes/Elders";
+import WhatWeBeleive from "./routes/WhatWeBelieve";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/elders",
         element: <Elders />,
+      },
+      {
+        path: "/beliefs",
+        element: <WhatWeBeleive />,
       },
     ],
   },
