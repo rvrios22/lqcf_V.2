@@ -10,6 +10,7 @@ import ErrorPage from "./routes/ErrorPage";
 import MensStudy from "./routes/MensStudy";
 import Elders from "./routes/Elders";
 import WhatWeBeleive from "./routes/WhatWeBelieve";
+import CurrentStudies from "./routes/CurrentStudies";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/beliefs",
         element: <WhatWeBeleive />,
+      },
+      {
+        path: "/studies",
+        element: <CurrentStudies />,
       },
     ],
   },
