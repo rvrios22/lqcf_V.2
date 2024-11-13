@@ -64,7 +64,7 @@ function Person({ name, bio, img, link }) {
         />
         <h2 className="sub-header">{name}</h2>
       </div>
-      <div style={window.innerWidth >= 699 ? { height: imgHeight, overflowY: 'scroll' } : ""}>
+      <div style={window.innerWidth >= 699 ? { height: imgHeight, overflowY: 'scroll' } : {}}>
         <p className="general-text">{bio}</p>
       </div>
     </div>
