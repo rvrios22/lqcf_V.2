@@ -23,6 +23,7 @@ a {
     color: black;
 }
 
+
 .page-flex {
     height: 100vh;
     display: flex;
@@ -38,6 +39,10 @@ a {
 .general-container {
     width: 90%;
     margin: 0 auto;
+}
+
+.general-container > div:last-of-type > hr {
+    display: none;
 }
 
 .general-text {

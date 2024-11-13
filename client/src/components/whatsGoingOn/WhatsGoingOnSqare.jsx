@@ -33,7 +33,7 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
 
   const handleAnimOut = () => {
     const heightDifference =
-      tileRef.current.clientHeight - textRef.current.clientHeight;
+      tileRef.current.clientHeight - textRef.current.clientHeight - 20;
     setTextStyle({
       transform: `translate(-50%, ${heightDifference}px)`,
       transition: "transform 500ms ease-out",
@@ -49,7 +49,7 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
 
     const getHeightDifference = () => {
       const heightDifference =
-        tileRef.current.clientHeight - textRef.current.clientHeight;
+        tileRef.current.clientHeight - textRef.current.clientHeight - 15;
       setTextStyle({
         transform: `translate(-50%, ${heightDifference}px)`,
       });

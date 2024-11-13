@@ -4,6 +4,7 @@
 
 .header-img {
     object-fit: cover;
+    aspect-ratio: 16/9;
 }
 
 .header-img-container h1 {
