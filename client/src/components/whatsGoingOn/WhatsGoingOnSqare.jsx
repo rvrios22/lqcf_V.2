@@ -62,6 +62,7 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
   }, []);
 
   useEffect(() => {
+    handleImgResize();
     window.addEventListener("resize", handleImgResize);
 
     return () => window.removeEventListener("resize", handleImgResize);

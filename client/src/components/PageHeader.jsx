@@ -24,6 +24,7 @@ function PageHeader({ srcImg, fetchImg, headerText, imgAltText }) {
   };
 
   useEffect(() => {
+    handleImgResize()
     window.addEventListener("resize", handleImgResize);
 
     return () => window.removeEventListener("resize", handleImgResize);
