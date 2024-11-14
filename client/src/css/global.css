@@ -51,6 +51,7 @@ a {
 
 .bible-text {
     font-family: "Great Vibes", cursive;
+    font-size: clamp(20px, 2.8vw, 22px);
 }
 
 .citation {

@@ -11,6 +11,8 @@ import MensStudy from "./routes/MensStudy";
 import Elders from "./routes/Elders";
 import WhatWeBeleive from "./routes/WhatWeBelieve";
 import CurrentStudies from "./routes/CurrentStudies";
+import IdentityYouth from './routes/IdentityYouth'
+import PrayerChain from './routes/PrayerChain'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/studies",
         element: <CurrentStudies />,
+      },
+      {
+        path: "/identity-youth",
+        element: < IdentityYouth/>,
+      },
+      {
+        path: "/prayer-chain",
+        element: <PrayerChain />,
       },
     ],
   },
