@@ -13,6 +13,8 @@ import WhatWeBeleive from "./routes/WhatWeBelieve";
 import CurrentStudies from "./routes/CurrentStudies";
 import IdentityYouth from './routes/IdentityYouth'
 import PrayerChain from './routes/PrayerChain'
+import School from "./routes/School";
+import Giving from './routes/Giving'
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: "/prayer-chain",
         element: <PrayerChain />,
+      },
+      {
+        path: "/school",
+        element: <School />,
+      },
+      {
+        path: "/giving",
+        element: <Giving />,
       },
     ],
   },
