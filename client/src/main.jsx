@@ -15,6 +15,7 @@ import IdentityYouth from './routes/IdentityYouth'
 import PrayerChain from './routes/PrayerChain'
 import School from "./routes/School";
 import Giving from './routes/Giving'
+import Prayer from "./routes/Prayer";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/giving",
         element: <Giving />,
+      },
+      {
+        path: "/prayer",
+        element: <Prayer />,
       },
     ],
   },
