@@ -36,13 +36,15 @@ function Prayer() {
         him up; and if he have committed sins, they shall be forgiven him.”{" "}
         <span className="citation">James 5:14-15</span>
       </p>
-      <h2>Are You In Need of Prayer?</h2>
+      <h2 className="sub-header">Are You In Need of Prayer?</h2>
       <p className="general-text">
         Please full out our form to send us your prayer request and we will pray
         for you.
       </p>
       <form ref={formRef} onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
+        <label className="general-text" htmlFor="name">
+          Name
+        </label>
         <input
           type="text"
           id="name"
@@ -51,7 +53,9 @@ function Prayer() {
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         />
-        <label htmlFor="email">Email</label>
+        <label className="general-text" htmlFor="email">
+          Email
+        </label>
         <input
           type="email"
           id="email"
@@ -60,7 +64,9 @@ function Prayer() {
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
-        <label htmlFor="request">Prayer Request</label>
+        <label className="general-text" htmlFor="request">
+          Prayer Request
+        </label>
         <textarea
           id="request"
           required
@@ -70,7 +76,7 @@ function Prayer() {
             setFormData({ ...formData, message: e.target.value })
           }
         ></textarea>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="submit-button"/>
       </form>
     </div>
   );

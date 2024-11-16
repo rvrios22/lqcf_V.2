@@ -23,6 +23,26 @@ a {
     color: black;
 }
 
+label:not(nav label),
+input,
+textarea {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+}
+
+input,
+textarea {
+    margin-bottom: .5em;
+    border-radius: 7px;
+    border: 1px solid gray;
+    height: 2em;
+    text-align: left;
+    padding: .1em .5em;
+}
+
 
 .page-flex {
     height: 100vh;
@@ -41,7 +61,7 @@ a {
     margin: 0 auto;
 }
 
-.general-container > div:last-of-type > hr {
+.general-container>div:last-of-type>hr {
     display: none;
 }
 
@@ -100,4 +120,25 @@ a {
 
 .link-underline {
     text-decoration: underline;
+}
+
+.submit-button {
+    all: unset;
+    margin: 0 auto 1em;
+    padding: .25em;
+    text-align: center;
+    display: block;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 30%;
+    max-width: 238px;
+    font-family: "Fira Sans", sans-serif;
+    transition: color 200ms, background-color 200ms;
+}
+
+.submit-button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    transition: color 250ms, background-color 200ms;
 }
