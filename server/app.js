@@ -7,12 +7,13 @@ const db = require('./models')
 const images = require('./routes/images')
 const pdfs = require('./routes/pdfs')
 app.use(cors())
+app.use(express.json())
 app.use(express.static('public'))
 
 app.use('/images', images)
 app.use('/pdfs', pdfs)
 
-db.sequelize.sync({ alert: true, force: false}).then(() => {
+db.sequelize.sync({ alert: true, force: false }).then(() => {
     console.log('DB Synced')
 })
 
