@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        study: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         date: {
             type: DataTypes.DATE,
             allowNull: true

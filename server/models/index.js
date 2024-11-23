@@ -9,5 +9,13 @@ const db = {}
 db.sequelize = sequelize
 db.models = {}
 db.models.PDF = require('./pdf')(sequelize, Sequelize.DataTypes)
+db.models.Study = require('./study')(sequelize, Sequelize.DataTypes)
 
-module.exports = db
+db.models.Study.hasMany(db.models.PDF)
+db.models.PDF.belongsTo(db.models.Study)
+
+module.exports = {
+    db,
+    PDF: db.models.PDF,
+    Study: db.models.Study
+}

@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const port = 3001
-const db = require('./models')
+const { db } = require('./models')
 
 const images = require('./routes/images')
 const pdfs = require('./routes/pdfs')
