@@ -3,11 +3,40 @@ const router = express.Router()
 const fs = require('fs')
 const { pdfsUpload } = require('../middleware/multer')
 const { PDF, Study } = require('../models')
-router.get('/', (req, res, next) => {
-    console.log(PDF)
-    res.send('sent')
+
+// get all PDFs
+router.get('/', async (req, res, next) => {
+    try {
+
+        const pdfs = await PDF.findAll()
+        res.status(200).json({ success: true, pdfs })
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message })
+        next(err)
+    }
 })
 
+// get PDFs by study
+router.get('/:studyName', async (req, res, next) => {
+    const studyName = req.params.studyName
+    try {
+        const study = await Study.findOne({ where: { name: studyName } })
+        if (!study) {
+            res.status(404).json({ success: false, message: 'The study does not exist' })
+        }
+        const pdfs = await PDF.findAll({
+            where: {
+                studyId: study.id
+            }
+        })
+        res.status(200).json({ success: true, pdfs })
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message })
+        next(err)
+    }
+})
+
+//upload a PDF
 router.post('/', pdfsUpload.single('pdf'), async (req, res, next) => {
     if (!req.file) {
         res.status(400).json({ success: false, message: 'File not uploaded, please attach a PDF to upload' })
@@ -30,7 +59,7 @@ router.post('/', pdfsUpload.single('pdf'), async (req, res, next) => {
             studyId: study.id,
             date: date
         })
-        res.json({ success: true, pdf })
+        res.status(201).json({ success: true, pdf })
     } catch (err) {
         fs.unlink(file.path, (err) => {
             if (err) {
@@ -39,6 +68,46 @@ router.post('/', pdfsUpload.single('pdf'), async (req, res, next) => {
             console.log(`file at ${file.path} was deleted`)
         })
         res.json({ success: false, message: err.message })
+        next(err)
+    }
+})
+
+router.put('/:id', async (req, res, next) => {
+    const pdfId = req.params.id
+    const { title, date, studyName } = req.body
+    
+
+    try {
+        let study = await Study.findOne({ where: { name: studyName } })
+        if (!study) {
+            study = await Study.create({ name: studyName })
+        }
+        const pdf = await PDF.findOne({ where: { id: pdfId } })
+        await pdf.update({
+            title: title,
+            date: date,
+            studyId: study.id
+        })
+        res.status(200).json({ success: true, pdf })
+    } catch (err) {
+        res.status(500).json({ success: false, message: 'Something went wrong', error: err.message })
+        next(err)
+    }
+
+})
+
+//delete a single PDF from id
+router.delete('/:id', async (req, res, next) => {
+    const pdfId = req.params.id
+    try {
+        const pdf = await PDF.destroy({ where: { id: pdfId } })
+        if (!pdf) {
+            res.status(404).json({ success: false, message: 'The PDF was not found' })
+            return
+        }
+        res.status(200).json({ success: true, message: 'PDF was deleted' })
+    } catch (err) {
+        res.status(500).json({ success: false, message: 'something went wrong', error: err.message })
         next(err)
     }
 })
