@@ -72,11 +72,10 @@ router.post('/', pdfsUpload.single('pdf'), async (req, res, next) => {
     }
 })
 
+//edit a PDF
 router.put('/:id', async (req, res, next) => {
     const pdfId = req.params.id
     const { title, date, studyName } = req.body
-    
-
     try {
         let study = await Study.findOne({ where: { name: studyName } })
         if (!study) {
