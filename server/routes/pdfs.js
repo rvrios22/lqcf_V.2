@@ -19,10 +19,15 @@ router.get('/', async (req, res, next) => {
 // get PDFs by study
 router.get('/:studyName', async (req, res, next) => {
     const studyName = req.params.studyName
+    if (!studyName) {
+        res.status(400).json({ success: false, message: 'Params missing' })
+        return
+    }
     try {
         const study = await Study.findOne({ where: { name: studyName } })
         if (!study) {
             res.status(404).json({ success: false, message: 'The study does not exist' })
+            return
         }
         const pdfs = await PDF.findAll({
             where: {
