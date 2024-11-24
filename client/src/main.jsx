@@ -16,6 +16,7 @@ import PrayerChain from './routes/PrayerChain'
 import School from "./routes/School";
 import Giving from './routes/Giving'
 import Prayer from "./routes/Prayer";
+import Events from "./routes/Events";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/prayer",
         element: <Prayer />,
+      },
+      {
+        path: "/events",
+        element: <Events />,
       },
     ],
   },

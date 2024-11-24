@@ -1,0 +1,12 @@
+.pdf-modal-container {
+    border: 1px solid black;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 7px;
+}
+
+.header-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1em
+}

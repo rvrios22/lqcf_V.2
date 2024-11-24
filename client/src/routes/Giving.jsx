@@ -49,7 +49,7 @@ function Giving() {
           href="https://www.zeffy.com/en-US/donation-form/5da45795-5ea3-42d7-8d39-bb107f0ce0db"
           target="_blank"
           rel="noopener noreferrer"
-          className="link-underline"
+          className="underline"
         >
           here
         </a>
