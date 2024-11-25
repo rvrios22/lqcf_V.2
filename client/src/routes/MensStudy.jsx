@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import PageHeader from "../components/PageHeader";
 import { Link } from "react-router-dom";
 import PDFModal from "../components/PDFModal";
 
 function MensStudy() {
+  const [isModalShowing, setIsModalShowing] = useState(false);
+  const [isModalMounted, setIsModalMounted] = useState(false);
+
+  const endAnimation = (isMounted, setShow) => {
+    if (!isMounted) setShow(false);
+  };
   return (
     <>
       <PageHeader
@@ -43,9 +49,26 @@ function MensStudy() {
         </Link>{" "}
         page to verify our meeting dates each month as well as the topic of our
         study. To see a list of all of the outlines in this series click{" "}
-        <span className="underline">here</span>.
+        <span
+          className="underline"
+          onClick={() => {
+            setIsModalShowing(true);
+            setIsModalMounted(true);
+          }}
+        >
+          here
+        </span>
+        .
       </p>
-      <PDFModal displayStudy="Test" />
+      {isModalShowing && (
+        <PDFModal
+          displayStudy="Test"
+          setShow={setIsModalShowing}
+          isMounted={isModalMounted}
+          setMounted={setIsModalMounted}
+          endAnimation={endAnimation}
+        />
+      )}
     </>
   );
 }
