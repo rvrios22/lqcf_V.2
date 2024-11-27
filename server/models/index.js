@@ -10,6 +10,7 @@ db.sequelize = sequelize
 db.models = {}
 db.models.PDF = require('./pdf')(sequelize, Sequelize.DataTypes)
 db.models.Study = require('./study')(sequelize, Sequelize.DataTypes)
+db.models.Event = require('./event')(sequelize, Sequelize.DataTypes)
 
 db.models.Study.hasMany(db.models.PDF)
 db.models.PDF.belongsTo(db.models.Study)
@@ -17,5 +18,6 @@ db.models.PDF.belongsTo(db.models.Study)
 module.exports = {
     db,
     PDF: db.models.PDF,
-    Study: db.models.Study
+    Study: db.models.Study,
+    Event: db.models.Event
 }
