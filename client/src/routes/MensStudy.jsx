@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PageHeader from "../components/PageHeader";
 import { Link } from "react-router-dom";
-import PDFModal from "../components/PDFModal";
+import PDFModal from "../components/PDF/PDFModal";
 
 function MensStudy() {
   const [isModalShowing, setIsModalShowing] = useState(false);
@@ -16,6 +16,7 @@ function MensStudy() {
         srcImg="./mensStudyHeader.avif"
         fetchImg="mensStudyHeader"
         imgAltText="Men's Study"
+        headerText="Men's Study"
       />
       <h1 className="sub-header">Men's Study</h1>
       <p className="general-text">

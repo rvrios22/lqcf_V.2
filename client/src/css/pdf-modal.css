@@ -72,6 +72,15 @@
     background-color: rgba(103, 220, 255, 0.553);
 }
 
+.pdf-left-flex  {
+    display: flex;
+    gap: .5em;
+}
+
+.pdf-left-flex svg {
+    cursor: pointer;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;

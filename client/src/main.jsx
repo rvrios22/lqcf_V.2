@@ -11,12 +11,13 @@ import MensStudy from "./routes/MensStudy";
 import Elders from "./routes/Elders";
 import WhatWeBeleive from "./routes/WhatWeBelieve";
 import CurrentStudies from "./routes/CurrentStudies";
-import IdentityYouth from './routes/IdentityYouth'
-import PrayerChain from './routes/PrayerChain'
+import IdentityYouth from "./routes/IdentityYouth";
+import PrayerChain from "./routes/PrayerChain";
 import School from "./routes/School";
-import Giving from './routes/Giving'
+import Giving from "./routes/Giving";
 import Prayer from "./routes/Prayer";
 import Events from "./routes/Events";
+import WomensStudy from "./routes/WomensStudy";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/identity-youth",
-        element: < IdentityYouth/>,
+        element: <IdentityYouth />,
       },
       {
         path: "/prayer-chain",
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/events",
         element: <Events />,
+      },
+      {
+        path: "/womens-study",
+        element: <WomensStudy />,
       },
     ],
   },

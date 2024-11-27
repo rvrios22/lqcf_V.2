@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../css/pdf-modal.css";
+import "../../css/pdf-modal.css";
+import PDF from "../PDF/PDF";
 
 function PDFModal({
   displayStudy,
@@ -43,8 +44,13 @@ function PDFModal({
     }
   };
 
+  //fetchPDFs used to fetch from DB
   const fetchPDFs = async (study) => {
     if (!study) return;
+    if (study === "Favorites") {
+      console.log("fav");
+      return;
+    }
     try {
       const response = await fetch(`http://localhost:3001/pdfs/${study}`);
       if (!response.ok) {
@@ -59,6 +65,9 @@ function PDFModal({
       console.error(`Something went wrong: ${err}`);
     }
   };
+
+  //fetchFavorites used to fetch pdfs in local storage
+  const fetchFavorites = () => {};
   useEffect(() => {
     fetchStudies();
   }, []);
@@ -109,6 +118,7 @@ function PDFModal({
               fetchPDFs(e.target.value);
             }}
           >
+            {/* <option value="Favorites">Favorites</option> */}
             {studies.map((study, idx) => (
               <option value={study.name} key={study.id}>
                 {study.name}
@@ -119,10 +129,7 @@ function PDFModal({
         </div>
         <div className="pdf-bottom">
           {PDFData.map((pdf, idx) => (
-            <div className="pdf-list-flex" key={pdf.id}>
-              <span className="general-text">{pdf.title}</span>
-              <span className="general-text">{pdf.date || "N/A"}</span>
-            </div>
+            <PDF key={pdf.id} pdf={pdf} />
           ))}
         </div>
       </div>
