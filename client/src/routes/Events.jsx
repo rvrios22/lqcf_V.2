@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Event from "../components/events/Event";
+import AddEventForm from "../components/events/AddEventForm";
 
 function Events() {
   const [eventsArray, setEventsArray] = useState([]);
@@ -15,12 +16,18 @@ function Events() {
   }, []);
 
   return (
-    <>
+    <div className="general-container">
       <h1 className="sub-header">Upcoming Events:</h1>
       {eventsArray.map((event) => (
-        <Event key={event.id} event={event} />
+        <Event
+          key={event.id}
+          event={event}
+          setEventsArray={setEventsArray}
+          eventsArray={eventsArray}
+        />
       ))}
-    </>
+      <AddEventForm setEventsArray={setEventsArray} eventsArray={eventsArray} />
+    </div>
   );
 }
 
