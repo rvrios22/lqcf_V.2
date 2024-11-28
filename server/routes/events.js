@@ -4,7 +4,7 @@ const { Event } = require('../models')
 
 router.get('/', async (req, res, next) => {
     try {
-        const events = await Event.findAll()
+        const events = await Event.findAll({ order: [['date', 'ASC']] })
         res.status(200).json({ success: true, events })
     } catch (err) {
         res.status(500).json({ success: false, err })
