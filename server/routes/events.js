@@ -28,6 +28,30 @@ router.post('/', async (req, res, next) => {
 
 })
 
+router.put('/:id', async (req, res, next) => {
+    const eventId = req.params.id
+    const { title, description, date } = req.body
+    try {
+        const event = await Event.findOne({
+            where: {
+                id: eventId
+            }
+        })
+        if (!event) {
+            res.status(404).json({ success: false, message: 'The event was not found' })
+            return
+        }
+        await event.update({
+            title: title,
+            description: description,
+            date: date
+        })
+        res.status(200).json({ success: true, event })
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.delete('/:id', async (req, res, next) => {
     const eventId = req.params.id
     try {

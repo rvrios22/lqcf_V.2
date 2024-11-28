@@ -87,6 +87,10 @@ router.put('/:id', async (req, res, next) => {
             study = await Study.create({ name: studyName })
         }
         const pdf = await PDF.findOne({ where: { id: pdfId } })
+        if (!pdf) {
+            res.status(404).json({ success: false, message: 'The PDF was not found' })
+            return
+        }
         await pdf.update({
             title: title,
             date: date,
