@@ -17,7 +17,7 @@ const dateFormater = (dateString) => {
     const month = getMonthName(monthidx)
     const year = date.getFullYear()
 
-    return `${month} ${day}, ${year}`
+    return `${month} ${day + 1}, ${year}`
 }
 
 

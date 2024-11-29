@@ -5,9 +5,9 @@ import dateFormater from "../../helpers/getDate";
 function Event({ event, setEventsArray, eventsArray }) {
   const [isEventEditable, setIsEventEditable] = useState(false);
   const [editedEvent, setEditedEvent] = useState({
-    title: "",
-    date: "",
-    description: "",
+    title: event.title,
+    date: event.date,
+    description: event.description,
   });
   const submitEdit = async (e, id) => {
     e.preventDefault();
@@ -19,10 +19,25 @@ function Event({ event, setEventsArray, eventsArray }) {
       body: JSON.stringify(editedEvent),
     };
     try {
-      const response = await fetch(`http://localhost:3001/events/${id}`, options);
-      console.log('here')
+      const response = await fetch(
+        `http://localhost:3001/events/${id}`,
+        options
+      );
       const data = await response.json();
+      const foundEvent = {
+        ...eventsArray.find((e) => e.id === event.id),
+        title: editedEvent.title,
+        date: editedEvent.date,
+        description: editedEvent.description,
+      };
+      const filteredEvents = eventsArray.filter((e) => e.id !== event.id);
+      const newArray = [...filteredEvents, foundEvent];
+      newArray.sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+      });
+      setEventsArray(newArray);
       console.log(data);
+      setIsEventEditable(false);
     } catch (err) {
       console.error(err);
     } finally {
@@ -91,7 +106,7 @@ function Event({ event, setEventsArray, eventsArray }) {
       <input
         type="date"
         name="date"
-        placeholder={event.date}
+        value={editedEvent.date.split("T")[0]}
         onChange={(e) =>
           setEditedEvent({
             ...editedEvent,

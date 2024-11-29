@@ -11,10 +11,18 @@ function Events() {
     setEventsArray(data.events);
   };
 
+  const sortEventsByDate = () => {
+    const eventsCopy = [...eventsArray];
+    eventsCopy.sort((a, b) => {
+      return new Date(b.updateAt) - new Date(a.updatedAt);
+    });
+    setEventsArray(eventsCopy);
+  };
+
   useEffect(() => {
     fetchEvents();
   }, []);
-
+  
   return (
     <div className="general-container">
       <h1 className="sub-header">Upcoming Events:</h1>
