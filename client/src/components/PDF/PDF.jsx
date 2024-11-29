@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../css/pdf-modal.css";
+import getDate from "../../helpers/getDate";
 
 function PDF({ pdf }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -34,7 +35,7 @@ function PDF({ pdf }) {
   }, []);
 
   return (
-    <div className="pdf-list-flex" key={pdf.id}>
+    <div className="pdf-list-flex" key={pdf.id} onClick={openPDF}>
       <div className="pdf-left-flex">
         {/* <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -52,11 +53,11 @@ function PDF({ pdf }) {
         >
           <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.968 1.522 8.301L12 18.847l-7.458 4.728 1.522-8.301L0 9.306l8.332-1.151L12 .587z" />
         </svg> */}
-        <span onClick={openPDF} className="general-text">
-          {pdf.title}
-        </span>
+        <span className="general-text">{pdf.title}</span>
       </div>
-      <span className="general-text">{pdf.date || "N/A"}</span>
+      <span className="general-text">
+        {pdf.date === null ? "N/A" : getDate(pdf.date)}
+      </span>
     </div>
   );
 }

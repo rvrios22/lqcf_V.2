@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PageHeader from "../components/PageHeader";
 import { Link } from "react-router-dom";
 import PDFModal from "../components/PDF/PDFModal";
+import PDFUploadForm from "../components/PDF/PDFUploadForm";
 
 function MensStudy() {
   const [isModalShowing, setIsModalShowing] = useState(false);
@@ -70,6 +71,7 @@ function MensStudy() {
           endAnimation={endAnimation}
         />
       )}
+      <PDFUploadForm />
     </>
   );
 }

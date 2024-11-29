@@ -54,9 +54,6 @@
     justify-content: space-between;
     padding: .3em;
     border-bottom: 1px solid black;
-}
-
-.pdf-list-flex span:first-child{
     cursor: pointer;
 }
 
