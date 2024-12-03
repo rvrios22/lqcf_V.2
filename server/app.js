@@ -9,6 +9,7 @@ const images = require('./routes/images')
 const pdfs = require('./routes/pdfs')
 const study = require('./routes/study')
 const events = require('./routes/events')
+const user = require('./routes/user')
 
 app.use(cors())
 app.use(express.json())
@@ -18,6 +19,7 @@ app.use('/images', images)
 app.use('/pdfs', pdfs)
 app.use('/study', study)
 app.use('/events', events)
+app.use('/user', user)
 
 db.sequelize.sync({ alert: true, force: false }).then(() => {
     console.log('DB Synced')
