@@ -25,6 +25,11 @@ db.sequelize.sync({ alert: true, force: false }).then(() => {
     console.log('DB Synced')
 })
 
+app.use((err, req, res, next) => {
+    console.error(err)
+    res.status(500).json({ success: false, message: 'Something went wrong', err })
+})
+
 app.listen(port, () => {
     console.log(`app listening on port ${port}`)
 })
