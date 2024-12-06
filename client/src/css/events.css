@@ -1,0 +1,9 @@
+.event-header, .event-text {
+    text-align: left;
+    margin: 0;
+}
+
+.event-date {
+    font-size: 1em;
+    text-decoration: underline;
+}

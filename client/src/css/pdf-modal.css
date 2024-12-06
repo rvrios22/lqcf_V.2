@@ -57,6 +57,18 @@
     cursor: pointer;
 }
 
+.pdf-list-flex>.pdf-left-flex>.general-text {
+    margin: 0;
+    font-size: 1em;
+    text-align: left;
+}
+
+.pdf-list-flex>.pdf-right-flex>.general-text {
+    margin: 0;
+    font-size: 1em;
+    text-align: right;
+}
+
 .pdf-list-flex:last-of-type {
     border: 0;
 }
@@ -69,12 +81,14 @@
     background-color: rgba(103, 220, 255, 0.553);
 }
 
-.pdf-left-flex  {
+.pdf-left-flex,
+.pdf-right-flex {
     display: flex;
     gap: .5em;
 }
 
-.pdf-left-flex svg {
+.pdf-left-flex svg,
+.pdf-right-flex svg {
     cursor: pointer;
 }
 

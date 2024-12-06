@@ -30,7 +30,6 @@ function Root() {
         return;
       }
       const data = await response.json();
-      console.log(data);
       setUser(data.user);
     } catch (err) {
       console.error(err);
@@ -40,7 +39,7 @@ function Root() {
 
   useEffect(() => {
     const checkMobileDisplay = () => {
-      window.innerWidth > 500
+      window.innerWidth > 600
         ? setIsMobileDisplay(false)
         : setIsMobileDisplay(true);
     };

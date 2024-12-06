@@ -33,8 +33,10 @@ function Navbar({ user }) {
 
   return (
     <div className="nav-flex">
-      <div className="general-text">
-        <Link to="/">LQCF Church</Link>
+      <div>
+        <span className="general-text">
+          <Link to="/">LQCF Church</Link>
+        </span>
         <span style={{ marginLeft: "10px" }}>{user && user.username}</span>
       </div>
       <div>
@@ -80,19 +82,18 @@ function Navbar({ user }) {
             />
           )}
         </span>
-
-        <Link to="/school">
-          <span className="general-text">School</span>
-        </Link>
-        <Link to="/giving">
-          <span className="general-text">Giving</span>
-        </Link>
-        <Link to="/events">
-          <span className="general-text">Events</span>
-        </Link>
-        <Link to="/prayer">
-          <span className="general-text">Prayer</span>
-        </Link>
+        <span className="general-text">
+          <Link to="/school">School</Link>
+        </span>
+        <span className="general-text">
+          <Link to="/giving">Giving</Link>
+        </span>
+        <span className="general-text">
+          <Link to="/events">Events</Link>
+        </span>
+        <span className="general-text">
+          <Link to="/prayer">Prayer</Link>
+        </span>
       </div>
     </div>
   );

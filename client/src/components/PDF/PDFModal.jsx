@@ -129,7 +129,7 @@ function PDFModal({
         </div>
         <div className="pdf-bottom">
           {PDFData.map((pdf, idx) => (
-            <PDF key={pdf.id} pdf={pdf} />
+            <PDF key={pdf.id} pdf={pdf} PDFData={PDFData} setPDFData={setPDFData} />
           ))}
         </div>
       </div>

@@ -11,12 +11,11 @@ nav {
     border-bottom: 2px solid black;
 }
 
-p {
-    width: 90%;
-    margin: .5em auto .5em;
-    font-size: clamp(18px, 2.5vw, 20px);
-    text-align: center;
+/* overwrite general-text class for better sizing on navbar */
+nav>.nav-flex>div>span {
+    font-size: 1em;
 }
+
 
 a {
     text-decoration: none;
@@ -71,6 +70,10 @@ select {
 
 .general-text {
     font-family: "Fira Sans", sans-serif;
+    width: 90%;
+    margin: .5em auto .5em;
+    font-size: clamp(18px, 2.5vw, 20px);
+    text-align: center;
 }
 
 .bible-text {

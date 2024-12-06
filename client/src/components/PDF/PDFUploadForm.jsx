@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function PDFUploadForm() {
   const [studyList, setStudyList] = useState([]);
@@ -8,6 +8,7 @@ function PDFUploadForm() {
     date: new Date(),
     pdf: "",
   });
+  const submitButton = useRef(null);
 
   const fetchStudies = async () => {
     try {
@@ -39,6 +40,7 @@ function PDFUploadForm() {
     try {
       const response = await fetch(`http://localhost:3001/pdfs`, options);
       const data = await response.json();
+      submitButton.current.blur();
       console.log(data);
     } catch (err) {
       console.error(err);
@@ -109,7 +111,12 @@ function PDFUploadForm() {
           })
         }
       />
-      <input type="submit" value="Submit" className="submit-button" />
+      <input
+        type="submit"
+        value="Submit"
+        className="submit-button"
+        ref={submitButton}
+      />
     </form>
   );
 }

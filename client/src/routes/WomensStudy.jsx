@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import PageHeader from "../components/PageHeader";
 import PDFModal from "../components/PDF/PDFModal";
+import PDFUploadForm from "../components/PDF/PDFUploadForm";
+import { useOutletContext } from "react-router-dom";
 function WomensStudy() {
   const [isModalShowing, setIsModalShowing] = useState(false);
   const [isModalMounted, setIsModalMounted] = useState(false);
-
+  const { user } = useOutletContext();
   const endAnimation = (isMounted, setShow) => {
     if (!isMounted) setShow(false);
   };
@@ -76,6 +78,7 @@ function WomensStudy() {
           endAnimation={endAnimation}
         />
       )}
+      {user.admin && <PDFUploadForm />}
     </>
   );
 }

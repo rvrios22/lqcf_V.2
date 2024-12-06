@@ -50,7 +50,9 @@ function Event({ event, setEventsArray, eventsArray, user }) {
   const handleDete = async (id) => {
     const options = {
       method: "DELETE",
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
     };
     try {
       const response = await fetch(
@@ -72,9 +74,9 @@ function Event({ event, setEventsArray, eventsArray, user }) {
 
   const displayEvent = (
     <>
-      <h3 className="event-header">{event.title}</h3>
-      <p className="event-text">{event.description}</p>
-      <p className="event-date">{dateFormater(event.date)}</p>
+      <h3 className="sub-header event-header">{event.title}</h3>
+      <p className="general-text event-text">{event.description}</p>
+      <p className="general-text  event-date">{dateFormater(event.date)}</p>
     </>
   );
 

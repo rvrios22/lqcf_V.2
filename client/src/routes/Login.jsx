@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const { setToken } = useOutletContext();
+  const submitButton = useRef(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,7 +23,7 @@ function Login() {
       setToken(data.token);
 
       setFormData({ username: "", password: "" });
-      console.log(data);
+      submitButton.current.blur()
     } catch (err) {
       console.error(err);
     }
@@ -54,7 +55,12 @@ function Login() {
             });
           }}
         />
-        <input type="submit" value="Submit" className="submit-button" />
+        <input
+          type="submit"
+          value="Submit"
+          className="submit-button"
+          ref={submitButton}
+        />
       </form>
     </div>
   );
