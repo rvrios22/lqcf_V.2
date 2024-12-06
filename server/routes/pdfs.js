@@ -108,11 +108,18 @@ router.put('/:id', verifyUser, async (req, res, next) => {
 router.delete('/:id', verifyUser, async (req, res, next) => {
     const pdfId = req.params.id
     try {
-        const pdf = await PDF.destroy({ where: { id: pdfId } })
+        const pdf = await PDF.findOne({ where: { id: pdfId } })
         if (!pdf) {
             res.status(404).json({ success: false, message: 'The PDF was not found' })
             return
         }
+        fs.unlink(pdf.pdfPath, (err) => {
+            if (err) {
+                res.status(500).json({ success: false, message: 'Something went wrong', err })
+                return
+            }
+        })
+        await pdf.destroy()
         res.status(200).json({ success: true, message: 'PDF was deleted' })
     } catch (err) {
         res.status(500).json({ success: false, message: 'something went wrong', error: err.message })
