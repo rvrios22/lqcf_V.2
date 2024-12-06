@@ -31,6 +31,9 @@ function PDFUploadForm() {
     const options = {
       method: "POST",
       body: formData,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
     };
 
     try {

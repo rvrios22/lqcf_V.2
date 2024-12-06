@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Event from "../components/events/Event";
 import AddEventForm from "../components/events/AddEventForm";
+import { useOutletContext } from "react-router-dom";
 
 function Events() {
   const [eventsArray, setEventsArray] = useState([]);
+  const { user } = useOutletContext();
 
   const fetchEvents = async () => {
     const response = await fetch(`http://localhost:3001/events`);
@@ -22,7 +24,7 @@ function Events() {
   useEffect(() => {
     fetchEvents();
   }, []);
-  
+
   return (
     <div className="general-container">
       <h1 className="sub-header">Upcoming Events:</h1>
@@ -32,9 +34,16 @@ function Events() {
           event={event}
           setEventsArray={setEventsArray}
           eventsArray={eventsArray}
+          user={user}
         />
       ))}
-      <AddEventForm setEventsArray={setEventsArray} eventsArray={eventsArray} />
+
+      {user && user.admin && (
+        <AddEventForm
+          setEventsArray={setEventsArray}
+          eventsArray={eventsArray}
+        />
+      )}
     </div>
   );
 }

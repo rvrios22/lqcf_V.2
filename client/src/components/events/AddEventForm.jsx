@@ -14,6 +14,7 @@ function AddEventForm({ setEventsArray, eventsArray }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
       body: JSON.stringify(formData),
     };
@@ -33,7 +34,7 @@ function AddEventForm({ setEventsArray, eventsArray }) {
     <form
       method="POST"
       onSubmit={(e) => {
-        handleSubmit(e)
+        handleSubmit(e);
       }}
     >
       <label htmlFor="title">Title</label>

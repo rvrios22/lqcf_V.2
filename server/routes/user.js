@@ -19,21 +19,21 @@ router.get('/verify', verifyUser, (req, res, next) => {
     res.status(200).json({ success: true, message: 'User verified', user: req.user })
 })
 
-//register user
-router.post('/sign-up', async (req, res, next) => {
-    const { username, password } = req.body
-    try {
-        const user = await User.create({
-            username: username,
-            password: await hashPassword(password)
-        })
-        res.status(200).json({ success: true, user })
-    } catch (err) {
-        console.error(err)
-        next(err)
-        return
-    }
-})
+//register user commented out for security
+// router.post('/sign-up', async (req, res, next) => {
+//     const { username, password } = req.body
+//     try {
+//         const user = await User.create({
+//             username: username,
+//             password: await hashPassword(password)
+//         })
+//         res.status(200).json({ success: true, user })
+//     } catch (err) {
+//         console.error(err)
+//         next(err)
+//         return
+//     }
+// })
 
 //log user in and assign jwt
 router.post('/login', async (req, res, next) => {
@@ -50,8 +50,8 @@ router.post('/login', async (req, res, next) => {
             return
         }
         const token = assignJWTToken(user)
-        res.cookie('jwt', token)
-        res.send(token)
+
+        res.status(200).json({ success: true, message: 'User logged in', token })
     } catch (err) {
         console.error(err)
         next(err)

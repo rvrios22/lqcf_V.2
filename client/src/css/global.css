@@ -142,10 +142,16 @@ select {
     max-width: 238px;
     font-family: "Fira Sans", sans-serif;
     transition: color 200ms, background-color 200ms;
+    cursor: pointer;
 }
 
 .submit-button:hover {
-    cursor: pointer;
+    color: white;
+    background-color: black;
+    transition: color 250ms, background-color 200ms;
+}
+
+.submit-button:focus {
     color: white;
     background-color: black;
     transition: color 250ms, background-color 200ms;

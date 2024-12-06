@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../css/events.css";
 import dateFormater from "../../helpers/getDate";
 
-function Event({ event, setEventsArray, eventsArray }) {
+function Event({ event, setEventsArray, eventsArray, user }) {
   const [isEventEditable, setIsEventEditable] = useState(false);
   const [editedEvent, setEditedEvent] = useState({
     title: event.title,
@@ -15,6 +15,7 @@ function Event({ event, setEventsArray, eventsArray }) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
       body: JSON.stringify(editedEvent),
     };
@@ -23,6 +24,7 @@ function Event({ event, setEventsArray, eventsArray }) {
         `http://localhost:3001/events/${id}`,
         options
       );
+      if (!response.ok) return;
       const data = await response.json();
       const foundEvent = {
         ...eventsArray.find((e) => e.id === event.id),
@@ -48,12 +50,14 @@ function Event({ event, setEventsArray, eventsArray }) {
   const handleDete = async (id) => {
     const options = {
       method: "DELETE",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     };
     try {
       const response = await fetch(
         `http://localhost:3001/events/${id}`,
         options
       );
+      if (!response.ok) return;
       const data = await response.json();
       setEventsArray(
         eventsArray.filter((e) => {
@@ -120,20 +124,24 @@ function Event({ event, setEventsArray, eventsArray }) {
 
   return (
     <div className="">
-      <button
-        onClick={() => {
-          handleDete(event.id);
-        }}
-      >
-        Delete
-      </button>
-      <button
-        onClick={() => {
-          setIsEventEditable(!isEventEditable);
-        }}
-      >
-        Edit
-      </button>
+      {user.admin && (
+        <button
+          onClick={() => {
+            handleDete(event.id);
+          }}
+        >
+          Delete
+        </button>
+      )}
+      {user.admin && (
+        <button
+          onClick={() => {
+            setIsEventEditable(!isEventEditable);
+          }}
+        >
+          Edit
+        </button>
+      )}
       {isEventEditable ? editEvent : displayEvent}
       <hr />
     </div>

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { Event } = require('../models')
+const { verifyUser } = require('../middleware/auth')
 
 router.get('/', async (req, res, next) => {
     try {
@@ -12,7 +13,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', verifyUser, async (req, res, next) => {
     const { title, description, date } = req.body
     try {
         const event = await Event.create({
@@ -28,7 +29,7 @@ router.post('/', async (req, res, next) => {
 
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', verifyUser, async (req, res, next) => {
     const eventId = req.params.id
     const { title, description, date } = req.body
     try {
@@ -52,7 +53,7 @@ router.put('/:id', async (req, res, next) => {
     }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', verifyUser, async (req, res, next) => {
     const eventId = req.params.id
     try {
         const event = await Event.destroy({

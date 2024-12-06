@@ -3,7 +3,7 @@ const router = express.Router()
 const fs = require('fs')
 const { pdfsUpload } = require('../middleware/multer')
 const { PDF, Study } = require('../models')
-
+const { verifyUser } = require('../middleware/auth')
 // get all PDFs
 router.get('/', async (req, res, next) => {
     try {
@@ -42,7 +42,7 @@ router.get('/:studyName', async (req, res, next) => {
 })
 
 //upload a PDF
-router.post('/', pdfsUpload.single('pdf'), async (req, res, next) => {
+router.post('/', verifyUser, pdfsUpload.single('pdf'), async (req, res, next) => {
     if (!req.file) {
         res.status(400).json({ success: false, message: 'File not uploaded, please attach a PDF to upload' })
         return
@@ -78,7 +78,7 @@ router.post('/', pdfsUpload.single('pdf'), async (req, res, next) => {
 })
 
 //edit a PDF
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', verifyUser, async (req, res, next) => {
     const pdfId = req.params.id
     const { title, date, studyName } = req.body
     try {
@@ -105,7 +105,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 //delete a single PDF from id
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', verifyUser, async (req, res, next) => {
     const pdfId = req.params.id
     try {
         const pdf = await PDF.destroy({ where: { id: pdfId } })

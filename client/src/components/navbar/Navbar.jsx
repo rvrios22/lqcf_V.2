@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { whoData, ministryData } from "./navbarData.js";
 import HoverDropDown from "../navbar/HoverDropDown";
 
-function Navbar() {
+function Navbar({ user }) {
   const [isWhoMounted, setIsWhoMounted] = useState(false);
   const [showWho, setShowWho] = useState(false);
   const [isMinistryMounted, setIsMinistryMounted] = useState(false);
@@ -35,6 +35,7 @@ function Navbar() {
     <div className="nav-flex">
       <div className="general-text">
         <Link to="/">LQCF Church</Link>
+        <span style={{ marginLeft: "10px" }}>{user && user.username}</span>
       </div>
       <div>
         <span

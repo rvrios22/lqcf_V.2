@@ -1,23 +1,24 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./css/global.css";
 import "./css/reset.css";
 
-import Home from "./routes/Home";
-import Root from "./routes/root";
-import ErrorPage from "./routes/ErrorPage";
-import MensStudy from "./routes/MensStudy";
-import Elders from "./routes/Elders";
-import WhatWeBeleive from "./routes/WhatWeBelieve";
-import CurrentStudies from "./routes/CurrentStudies";
-import IdentityYouth from "./routes/IdentityYouth";
-import PrayerChain from "./routes/PrayerChain";
-import School from "./routes/School";
-import Giving from "./routes/Giving";
-import Prayer from "./routes/Prayer";
-import Events from "./routes/Events";
-import WomensStudy from "./routes/WomensStudy";
+const Home = lazy(() => import("./routes/Home"));
+const Root = lazy(() => import("./routes/Root"));
+const ErrorPage = lazy(() => import("./routes/ErrorPage"));
+const MensStudy = lazy(() => import("./routes/MensStudy"));
+const Elders = lazy(() => import("./routes/Elders"));
+const WhatWeBeleive = lazy(() => import("./routes/WhatWeBelieve"));
+const CurrentStudies = lazy(() => import("./routes/CurrentStudies"));
+const IdentityYouth = lazy(() => import("./routes/IdentityYouth"));
+const PrayerChain = lazy(() => import("./routes/PrayerChain"));
+const School = lazy(() => import("./routes/School"));
+const Giving = lazy(() => import("./routes/Giving"));
+const Prayer = lazy(() => import("./routes/Prayer"));
+const Events = lazy(() => import("./routes/Events"));
+const WomensStudy = lazy(() => import("./routes/WomensStudy"));
+const Login = lazy(() => import("./routes/Login"));
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/womens-study",
         element: <WomensStudy />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

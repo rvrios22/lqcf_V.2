@@ -27,6 +27,7 @@ const comparePasswords = async (plainTextPassword, hashedPassword) => {
 const assignJWTToken = (user) => {
     const token = jwt.sign({
         admin: user.admin,
+        username: user.username,
     },
         process.env.AUTH_SECRET,
         {
@@ -42,10 +43,11 @@ const verifyUser = (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1]
         const decoded = jwt.verify(token, process.env.AUTH_SECRET)
         req.user = decoded
+        next()
     } catch (err) {
         res.status(403).json({ success: false, message: 'Invalid or expired token', err })
+        return
     }
-    next()
 }
 
 module.exports = {
