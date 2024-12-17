@@ -79,6 +79,9 @@ select {
 .bible-text {
     font-family: "Great Vibes", cursive;
     font-size: clamp(20px, 2.8vw, 22px);
+    text-align: center;
+    margin: .5em auto .5em;
+    width: 90%;
 }
 
 .citation {
@@ -100,6 +103,14 @@ select {
     font-family: 'Inter', Tahoma, Verdana, sans-serif;
     text-align: center;
     margin: .5em auto;
+}
+
+.centered-image {
+    height: 50vh;
+    margin: 0 auto;
+    border-radius: 10px;
+    aspect-ratio: 16/10;
+    object-fit: cover;
 }
 
 /*loading container provides sizing for the blur and loaded classes, it is needed in order to show loading blur*/

@@ -19,6 +19,12 @@ function WomensStudy() {
         imgAltText="Women's Study"
       />
       <h1 className="sub-header">Women's Study</h1>
+      <img
+        src="./womensStudySubHeader.avif"
+        alt="Women's group"
+        loading="lazy"
+        className="centered-image"
+      />
       <p className="general-text">
         Women joining together in the Word, fellowship, encouragement, and
         prayer; to glorify God and enjoy Him forever! The call of this ministry
@@ -71,7 +77,7 @@ function WomensStudy() {
       </p>
       {isModalShowing && (
         <PDFModal
-          displayStudy="General"
+          displayStudy="Terms And Definitions"
           setShow={setIsModalShowing}
           isMounted={isModalMounted}
           setMounted={setIsModalMounted}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import whatsGoingOnData from "/public/mappingData/whatsGoingOnData.js";
 import WhatsGoingOnSqare from "./WhatsGoingOnSqare";
 import useElementInView from "../../hooks/useElementInView";
@@ -43,6 +43,7 @@ function WhatsGoingOn() {
           title={tile.title}
           desc={tile.desc}
           link={tile.link}
+          target={tile.target}
           blob={tile.blob}
           loading={loading}
           idx={idx}

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../../css/whatsGoingOn.css";
 import { Link } from "react-router-dom";
 
-function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
+function WhatsGoingOnSqare({ src, title, desc, link, target,  blob, loading, idx }) {
   const [imgHeight, setImgHeight] = useState(0);
   const [textStyle, setTextStyle] = useState({});
   const [imgStyle, setImgStyle] = useState({
@@ -68,7 +68,7 @@ function WhatsGoingOnSqare({ src, title, desc, link, blob, loading, idx }) {
     return () => window.removeEventListener("resize", handleImgResize);
   }, []);
   return (
-    <Link to={link}>
+    <Link to={link} target={target} >
       <div
         className="tile-container"
         onMouseEnter={handleAnimIn}

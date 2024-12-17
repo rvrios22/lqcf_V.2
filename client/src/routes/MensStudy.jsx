@@ -65,7 +65,7 @@ function MensStudy() {
       </p>
       {isModalShowing && (
         <PDFModal
-          displayStudy="Test"
+          displayStudy="Revelations"
           setShow={setIsModalShowing}
           isMounted={isModalMounted}
           setMounted={setIsModalMounted}
