@@ -7,7 +7,7 @@ function WhatsGoingOn() {
   const [loading, setLoading] = useState(true);
   const [targetRef, isInView] = useElementInView({
     rootMargin: "-10px",
-    threshold: 0.75,
+    threshold: 0.55,
   });
 
   const fetchSquareImgs = async () => {

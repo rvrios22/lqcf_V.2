@@ -5,9 +5,10 @@ function PDFUploadForm() {
   const [formInputs, setFormInputs] = useState({
     title: "",
     study: "",
-    date: new Date(),
-    pdf: "",
+    date: "",
+    pdf: null,
   });
+  const pdfInput = useRef(null);
   const submitButton = useRef(null);
 
   const fetchStudies = async () => {
@@ -42,6 +43,15 @@ function PDFUploadForm() {
       const data = await response.json();
       submitButton.current.blur();
       console.log(data);
+      setFormInputs({
+        title: "",
+        study: "",
+        date: "",
+        pdf: "",
+      });
+      if (pdfInput.current) {
+        pdfInput.current.value = null;
+      }
     } catch (err) {
       console.error(err);
     }
@@ -59,6 +69,7 @@ function PDFUploadForm() {
         id="title"
         name="title"
         required
+        value={formInputs.title}
         onChange={(e) =>
           setFormInputs({
             ...formInputs,
@@ -72,6 +83,7 @@ function PDFUploadForm() {
         name="studyName"
         list="study"
         required
+        value={formInputs.study}
         onChange={(e) =>
           setFormInputs({
             ...formInputs,
@@ -91,6 +103,7 @@ function PDFUploadForm() {
         type="date"
         id="date"
         name="date"
+        value={formInputs.date}
         onChange={(e) =>
           setFormInputs({
             ...formInputs,
@@ -104,6 +117,7 @@ function PDFUploadForm() {
         id="pdf"
         name="pdf"
         required
+        ref={pdfInput}
         onChange={(e) =>
           setFormInputs({
             ...formInputs,
