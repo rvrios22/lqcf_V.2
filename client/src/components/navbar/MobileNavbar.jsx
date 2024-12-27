@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import "../../css/MobileNavbar.css";
+import "../../css/mobileNavbar.css";
 
 function MobileNavbar() {
   const [isMenuShowing, setIsMenuShowing] = useState(false);
