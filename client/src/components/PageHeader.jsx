@@ -8,7 +8,7 @@ function PageHeader({ srcImg, fetchImg, headerText, imgAltText }) {
 
   const fetchHeroImg = async () => {
     if (wasImgFetched) return;
-    const response = await fetch(`http://localhost:3001/images/${fetchImg}.avif`);
+    const response = await fetch(`http://localhost:3001/api/images/${fetchImg}.avif`);
     const data = await response.blob();
     setImgSrc(URL.createObjectURL(data));
     setLoading(false);

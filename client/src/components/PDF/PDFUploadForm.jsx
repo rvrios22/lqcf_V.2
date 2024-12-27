@@ -13,7 +13,7 @@ function PDFUploadForm() {
 
   const fetchStudies = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/study`);
+      const response = await fetch(`http://localhost:3001/api/study`);
       const data = await response.json();
       setStudyList(data.studies);
     } catch (err) {
@@ -39,7 +39,7 @@ function PDFUploadForm() {
     };
 
     try {
-      const response = await fetch(`http://localhost:3001/pdfs`, options);
+      const response = await fetch(`http://localhost:3001/api/pdfs`, options);
       const data = await response.json();
       submitButton.current.blur();
       console.log(data);

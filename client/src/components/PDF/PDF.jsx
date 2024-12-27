@@ -35,7 +35,7 @@ function PDF({ pdf, PDFData, setPDFData }) {
       },
     };
     const response = await fetch(
-      `http://localhost:3001/pdfs/${pdf.id}`,
+      `http://localhost:3001/api/pdfs/${pdf.id}`,
       options
     );
     if (!response.ok) {
