@@ -21,7 +21,7 @@ function Root() {
     }
     try {
       const response = await fetch(
-        "http://localhost:3001/api/user/verify",
+        "api/user/verify",
         options
       );
       if (!response.ok) {

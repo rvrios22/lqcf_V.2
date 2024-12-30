@@ -8,7 +8,7 @@ function Events() {
   const { user } = useOutletContext();
 
   const fetchEvents = async () => {
-    const response = await fetch(`http://localhost:3001/api/events`);
+    const response = await fetch(`/api/events`);
     const data = await response.json();
     setEventsArray(data.events);
   };

@@ -21,7 +21,7 @@ function Event({ event, setEventsArray, eventsArray, user }) {
     };
     try {
       const response = await fetch(
-        `http://localhost:3001/api/events/${id}`,
+        `/api/events/${id}`,
         options
       );
       if (!response.ok) return;
@@ -56,7 +56,7 @@ function Event({ event, setEventsArray, eventsArray, user }) {
     };
     try {
       const response = await fetch(
-        `http://localhost:3001/api/events/${id}`,
+        `/api/events/${id}`,
         options
       );
       if (!response.ok) return;

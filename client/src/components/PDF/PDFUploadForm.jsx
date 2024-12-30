@@ -5,7 +5,7 @@ function PDFUploadForm() {
   const [formInputs, setFormInputs] = useState({
     title: "",
     study: "",
-    date: "",
+    date: null,
     pdf: null,
   });
   const pdfInput = useRef(null);
@@ -13,7 +13,7 @@ function PDFUploadForm() {
 
   const fetchStudies = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/study`);
+      const response = await fetch(`/api/study`);
       const data = await response.json();
       setStudyList(data.studies);
     } catch (err) {
@@ -39,7 +39,7 @@ function PDFUploadForm() {
     };
 
     try {
-      const response = await fetch(`http://localhost:3001/api/pdfs`, options);
+      const response = await fetch(`/api/pdfs`, options);
       const data = await response.json();
       submitButton.current.blur();
       console.log(data);

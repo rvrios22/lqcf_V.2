@@ -19,7 +19,7 @@ function AddEventForm({ setEventsArray, eventsArray }) {
       body: JSON.stringify(formData),
     };
     try {
-      const response = await fetch(`http://localhost:3001/api/events`, options);
+      const response = await fetch(`/api/events`, options);
       const data = await response.json();
       setEventsArray([...eventsArray, data.event]);
       console.log(data);

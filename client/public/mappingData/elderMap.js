@@ -21,7 +21,7 @@ const elderData = [
         for the Lord rather than for men, knowing that from the Lord you will
         receive the reward of the inheritance. It is the Lord Christ whom you serve.”`,
         img: "./collinsImg.avif",
-        fetch: 'http://localhost:3001/api/images/collinsImg.avif',
+        fetch: '/api/images/collinsImg.avif',
         blob: null,
     },
     {
@@ -33,7 +33,7 @@ const elderData = [
         ministry, and heads the outreach ministry. He is married and has a grown daughter living in
         Washington.`,
         img: "./cookImg.avif",
-        fetch: 'http://locahost:3001/api/images/cookImg.avif',
+        fetch: '/api/images/cookImg.avif',
         blob: null,
 
     },
@@ -58,7 +58,7 @@ const elderData = [
         someone preaching? And how are they to preach unless they are sent? As it is written, “How
         beautiful are the feet of those who preach the good news!”`,
         img: "./claireImg.avif",
-        fetch: 'http://locahost:3001/api/images/claireImg.avif',
+        fetch: '/api/images/claireImg.avif',
         blob: null,
 
     },

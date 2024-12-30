@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../css/pdf-modal.css";
 import getDate from "../../helpers/getDate";
+import { useOutletContext } from "react-router-dom";
 
 function PDF({ pdf, PDFData, setPDFData }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [pdfDestination, setPDFDestination] = useState("");
+  const { user } = useOutletContext();
 
   const storeToLocalStorage = () => {
     localStorage.setItem(pdf.title, JSON.stringify(pdf));
@@ -24,7 +26,7 @@ function PDF({ pdf, PDFData, setPDFData }) {
   };
 
   const openPDF = () => {
-    window.open(`http://localhost:3001${pdfDestination}`, "_blank");
+    window.open(`/api${pdfDestination}`, "_blank");
   };
 
   const deletePDF = async (pdf) => {
@@ -34,10 +36,7 @@ function PDF({ pdf, PDFData, setPDFData }) {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
     };
-    const response = await fetch(
-      `http://localhost:3001/api/pdfs/${pdf.id}`,
-      options
-    );
+    const response = await fetch(`/api/pdfs/${pdf.id}`, options);
     if (!response.ok) {
       console.error("Something went wrong");
       return;
@@ -81,23 +80,25 @@ function PDF({ pdf, PDFData, setPDFData }) {
         <span className="general-text">
           {pdf.date === null ? "N/A" : getDate(pdf.date)}
         </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="red"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          onClick={() => {
-            deletePDF(pdf);
-          }}
-        >
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
+        {user && user.admin && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="red"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            onClick={() => {
+              deletePDF(pdf);
+            }}
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        )}
       </div>
     </div>
   );

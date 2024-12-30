@@ -25,7 +25,7 @@ function PDFModal({
 
   const fetchStudies = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/study");
+      const response = await fetch("/api/study");
       if (!response.ok) {
         console.error(
           `Something went wrong, ${Response.status}: ${Response.error}`
@@ -52,7 +52,7 @@ function PDFModal({
       return;
     }
     try {
-      const response = await fetch(`http://localhost:3001/api/pdfs/${study}`);
+      const response = await fetch(`/api/pdfs/${study}`);
       if (!response.ok) {
         console.error(
           `Something went wrong, ${Response.status}: ${Response.error}`

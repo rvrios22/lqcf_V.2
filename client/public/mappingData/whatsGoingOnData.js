@@ -5,7 +5,7 @@ const whatsGoingOnData = [
         img: './homeMensStudy',
         link: '/mens-study',
         target: '_self',
-        fetch: 'http://localhost:3001/api/images/homeMensStudy.avif',
+        fetch: '/api/images/homeMensStudy.avif',
         blob: null,
     },
     {
@@ -14,7 +14,7 @@ const whatsGoingOnData = [
         img: './homeWomensStudy',
         link: '/womens-study',
         target: '_self',
-        fetch: 'http://localhost:3001/api/images/homeWomensStudy.avif',
+        fetch: '/api/images/homeWomensStudy.avif',
         blob: null,
     },
     {
@@ -23,7 +23,7 @@ const whatsGoingOnData = [
         img: './homeLiveStream',
         link: 'https://www.facebook.com/profile.php?id=100075875377675',
         target: '_blank',
-        fetch: 'http://localhost:3001/api/images/homeLiveStream.avif',
+        fetch: '/api/images/homeLiveStream.avif',
         blob: null,
     },
     {
@@ -32,7 +32,7 @@ const whatsGoingOnData = [
         img: './homeCurrentStudy',
         link: '/studies',
         target: '_self',
-        fetch: 'http://localhost:3001/api/images/homeCurrentStudy.avif',
+        fetch: '/api/images/homeCurrentStudy.avif',
         blob: null,
     },
 ]

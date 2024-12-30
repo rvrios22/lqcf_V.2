@@ -16,7 +16,7 @@ function Login() {
       body: JSON.stringify(formData),
     };
     try {
-      const response = await fetch("http://localhost:3001/api/user/login", options);
+      const response = await fetch("/api/user/login", options);
       const data = await response.json();
 
       sessionStorage.setItem("token", data.token);

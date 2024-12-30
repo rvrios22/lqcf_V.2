@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
+
 function Prayer() {
   const [formData, setFormData] = useState({
     name: "",
@@ -7,6 +9,14 @@ function Prayer() {
     message: "",
   });
   const formRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "center",
+    showConfirmButton: false,
+    timer: 4000,
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,9 +27,24 @@ function Prayer() {
         formRef.current,
         import.meta.env.VITE_PUBLIC_KEY
       );
-      setFormData({});
+      Toast.fire({
+        title:
+          "Thank you for your request. We will keep you in prayer and reach out if we see fit. God bless!",
+        background: "#F5F6F7",
+        color: "black",
+      });
+      setFormData({ name: "", email: "", message: "" });
     } catch (err) {
+      Toast.fire({
+        title:
+          "So sorry, there's seems to be an issue in our system. Feel free to call our church or email us and we will pray for you. Thank you.",
+        icon: "error",
+        background: "#F5F6F7",
+        color: "black",
+      });
       console.error(err);
+    } finally {
+      buttonRef.current.blur();
     }
   };
   return (
@@ -76,7 +101,12 @@ function Prayer() {
             setFormData({ ...formData, message: e.target.value })
           }
         ></textarea>
-        <input type="submit" value="Submit" className="submit-button"/>
+        <input
+          type="submit"
+          value="Submit"
+          className="submit-button"
+          ref={buttonRef}
+        />
       </form>
     </div>
   );
