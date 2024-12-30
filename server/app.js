@@ -3,7 +3,7 @@ const app = express()
 const path = require('path')
 const cors = require('cors')
 const helmet = require('helmet')
-const port = process.env.PORT || 3001
+const port = 3001
 const { db } = require('./models')
 
 const images = require('./routes/images')
@@ -17,11 +17,11 @@ app.use(express.json())
 app.use(helmet())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/api/images', images)
-app.use('/api/pdfs', pdfs)
-app.use('/api/study', study)
-app.use('/api/events', events)
-app.use('/api/user', user)
+app.use('/images', images)
+app.use('/pdfs', pdfs)
+app.use('/study', study)
+app.use('/events', events)
+app.use('/user', user)
 
 db.sequelize.sync({
     alert: true,

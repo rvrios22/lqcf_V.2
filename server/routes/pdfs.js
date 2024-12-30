@@ -116,6 +116,7 @@ router.delete('/:id', verifyUser, async (req, res, next) => {
         fs.unlink(pdf.pdfPath, (err) => {
             if (err) {
                 res.status(500).json({ success: false, message: 'Something went wrong', err })
+                next(err)
                 return
             }
         })
