@@ -16,20 +16,6 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('file/:id', (req, res, next) => {
-    const pdfId = req.params.id
-    try {
-        const pdf = PDF.findOne({ where: { id: pdfId } })
-        if (!pdf) {
-            res.status(404).json({ success: false, message: 'The PDF does not exist' })
-            return
-        }
-        
-    } catch (err) {
-        next(err)
-    }
-})
-
 // get PDFs by study
 router.get('/:studyName', async (req, res, next) => {
     const studyName = req.params.studyName
@@ -67,6 +53,7 @@ router.post('/', verifyUser, pdfsUpload.single('pdf'), async (req, res, next) =>
     }
     const { title, studyName, date } = req.body
     const file = req.file
+    const dateCheck = date === 'null' || date === '' ? null : date
     try {
         let study = await Study.findOne({ where: { name: studyName } })
         if (!study) {
@@ -76,7 +63,7 @@ router.post('/', verifyUser, pdfsUpload.single('pdf'), async (req, res, next) =>
             title: title,
             pdfPath: file.path,
             studyId: study.id,
-            date: date
+            date: dateCheck
         })
         res.status(201).json({ success: true, pdf })
     } catch (err) {

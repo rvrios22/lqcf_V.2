@@ -21,13 +21,13 @@ function PDFUploadForm() {
     }
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append("title", formInputs.title);
     formData.append("studyName", formInputs.study);
-    formData.append("date", formInputs.date);
+    formData.append("date", formInputs.date || null);
     formData.append("pdf", formInputs.pdf);
 
     const options = {
@@ -103,11 +103,11 @@ function PDFUploadForm() {
         type="date"
         id="date"
         name="date"
-        value={formInputs.date}
+        value={formInputs.date || ""}
         onChange={(e) =>
           setFormInputs({
             ...formInputs,
-            date: e.target.value,
+            date: e.target.value ? e.target.value : null,
           })
         }
       />
