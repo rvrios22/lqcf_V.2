@@ -26,7 +26,7 @@ function PDF({ pdf, PDFData, setPDFData }) {
   };
 
   const openPDF = () => {
-    window.open(`/api${pdfDestination}`, "_blank");
+    window.open(`/api/static${pdfDestination}`, "_blank");
   };
 
   const deletePDF = async (pdf) => {

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -15,13 +16,13 @@ const user = require('./routes/user')
 app.use(cors())
 app.use(express.json())
 app.use(helmet())
-app.use(express.static(path.join(__dirname, 'public')))
+app.use('/api/static/', express.static(path.join(__dirname, 'public')))
 
-app.use('/images', images)
-app.use('/pdfs', pdfs)
-app.use('/study', study)
-app.use('/events', events)
-app.use('/user', user)
+app.use('/api/images', images)
+app.use('/api/pdfs', pdfs)
+app.use('/api/study', study)
+app.use('/api/events', events)
+app.use('/api/user', user)
 
 db.sequelize.sync({
     alert: true,
