@@ -11,14 +11,13 @@ const getMonthName = (monthIndex) => {
 
 
 const dateFormater = (dateString) => {
-    const date = new Date(dateString)
-    const day = date.getDate()
-    const monthidx = date.getMonth()
-    const month = getMonthName(monthidx)
-    const year = date.getFullYear()
+    const date = new Date(dateString);
+    const day = date.getUTCDate();
+    const monthidx = date.getUTCMonth();
+    const year = date.getUTCFullYear();
 
-    return `${month} ${day + 1}, ${year}`
+    const month = getMonthName(monthidx);
+    return `${month} ${day}, ${year}`
 }
-
 
 export default dateFormater

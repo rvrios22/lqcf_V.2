@@ -8,6 +8,8 @@ function PDF({ pdf, PDFData, setPDFData }) {
   const [pdfDestination, setPDFDestination] = useState("");
   const { user } = useOutletContext();
 
+  console.log(pdf)
+
   const storeToLocalStorage = () => {
     localStorage.setItem(pdf.title, JSON.stringify(pdf));
   };
