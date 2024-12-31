@@ -28,3 +28,6 @@ dist-ssr
 .jpg
 .avif
 .pdf
+public/pdfs
+public/thumbnails
+public/videos
